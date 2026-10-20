@@ -1,0 +1,11 @@
+# Curriculum publication check — 20 October 2026
+
+Ready for a static-hosting preview. This is an educational curriculum, not a guarantee of exhaustive factual accuracy or production certification.
+
+Verified in local Chrome: all 69 formulas render as native MathML, all 69 lesson selections match their formula references, 345 diagram states have valid SVG, all images decode, no JavaScript exceptions, and no page overflow at 320, 375, 390, 600, 768, 1024, 1440 and 1920 pixels. Light/dark rendering and reduced-motion behavior inspected. Progress identifiers retained.
+
+Publish the HTML with abhishek-panda.jpg in the same directory. The portrait is also the favicon. Formula rendering is embedded and needs no runtime CDN. Existing web fonts use online font services with system fallbacks. Social URLs follow the supplied account IDs; ownership and availability were not authenticated.
+
+Before public launch, preview the deployed HTTPS URL and verify its asset paths, progress export/import and links in current Safari and Firefox as well as Chrome. Device-specific behavior and future changes to external technical references cannot be guaranteed. Do not deploy backup HTML files. No hosting deployment was performed.
+
+Model catalog update: 12 task-specific choices, linked to official Hugging Face repositories, project cards and loading/evaluation guidance. Added 5 supporting libraries to the official tool registry and 12 multimodal syllabus topics. Existing topic identifiers remain stable. Recently studied and continuing education now occupy the desktop right sidebar and stack on smaller screens. Search, internal links and responsive layouts checked. Model inference itself was not run in Colab; hardware feasibility guidance is not a benchmark or guarantee.
