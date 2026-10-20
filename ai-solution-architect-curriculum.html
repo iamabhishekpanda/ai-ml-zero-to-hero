@@ -114,15 +114,29 @@ main{min-width:0}.learning-rail{min-width:0;align-self:start}.learning-rail .sec
 .cv-brand>img{display:block;width:auto;height:28px;max-width:118px;object-fit:contain;flex:none}
 .cv-brand-icon>img{width:30px;height:30px;max-width:30px;border-radius:5px}
 .cv-brand-jd>img{width:36px;height:36px;max-width:36px;background:transparent;border-radius:0;padding:0}
-.cv-brand-conduent>img{width:132px;height:38px;max-width:132px}
+.cv-brand-conduent>img{width:148px;height:43px;max-width:148px}
 .cv-brand-name{font:700 9px/1.25 'DM Sans',Arial,sans-serif;color:#172636;white-space:nowrap}
 
 .footer-brands{margin:20px 0 26px;padding:16px 0 14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .footer-brands-heading{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;color:var(--muted);font:700 9px/1.5 'IBM Plex Mono',monospace;letter-spacing:.1em}
 .footer-brands-heading small{font:500 9px/1.5 'DM Sans',Arial,sans-serif;letter-spacing:0;text-transform:none}
 .footer-brands .cv-brand-list{padding:3px 1px 6px}
-@media(max-width:760px){.cv-brand{gap:5px;padding:4px 7px;min-height:38px}.cv-brand>img{height:23px;max-width:91px}.cv-brand-icon>img{width:25px;height:25px;max-width:25px}.cv-brand-jd>img{width:32px;height:32px;max-width:32px}.cv-brand-conduent>img{width:112px;height:33px;max-width:112px}.cv-brand-name{font-size:9px}.footer-brands-heading{flex-wrap:wrap;gap:2px 9px}.footer-brands-heading small{flex-basis:100%}}
+@media(max-width:760px){.cv-brand{gap:5px;padding:4px 7px;min-height:38px}.cv-brand>img{height:23px;max-width:91px}.cv-brand-icon>img{width:25px;height:25px;max-width:25px}.cv-brand-jd>img{width:32px;height:32px;max-width:32px}.cv-brand-conduent>img{width:126px;height:37px;max-width:126px}.cv-brand-name{font-size:9px}.footer-brands-heading{flex-wrap:wrap;gap:2px 9px}.footer-brands-heading small{flex-basis:100%}}
 @media(prefers-reduced-motion:reduce){.cv-brand-list{scroll-behavior:auto!important}}
+
+/* Career role progression in the hero */
+.hero-role-rotator{display:flex;align-items:center;flex-wrap:wrap;gap:.19em;margin-top:.16em;max-width:100%;font-size:clamp(30px,4.15vw,61px);font-weight:800;line-height:1.12;letter-spacing:-.045em;color:var(--role-color,var(--accent));transition:color .45s ease}
+.hero-role-icon{width:1.05em;height:1.05em;flex:0 0 auto;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--role-color,var(--accent)) 38%,var(--line));border-radius:.27em;background:color-mix(in srgb,var(--role-color,var(--accent)) 14%,var(--panel));color:var(--role-color,var(--accent));box-shadow:0 8px 25px color-mix(in srgb,var(--role-color,var(--accent)) 14%,transparent)}
+.hero-role-icon .icon{width:.55em;height:.55em;stroke-width:2}
+.hero-role-title{display:inline-block;min-width:0;overflow-wrap:anywhere;transition:opacity .22s ease,transform .22s ease}
+.hero-role-rotator.is-changing .hero-role-title{opacity:0;transform:translateY(.18em)}
+.hero-role-enterprise{display:none;flex:none;padding:.16em .35em;border:1px solid color-mix(in srgb,var(--role-color,var(--accent)) 35%,var(--line));border-radius:.32em;background:color-mix(in srgb,var(--role-color,var(--accent)) 12%,var(--panel));font-size:.46em;line-height:1.3;letter-spacing:-.02em;animation:enterpriseFlip .48s cubic-bezier(.2,.8,.2,1) both}
+.hero-role-rotator.is-enterprise .hero-role-enterprise{display:inline-block}
+@keyframes enterpriseFlip{from{opacity:0;transform:translateY(.45em) rotateX(-55deg);filter:blur(3px)}to{opacity:1;transform:translateY(0) rotateX(0);filter:blur(0)}}
+.hero-role-rotator[data-tone="teal"]{--role-color:var(--series2)}.hero-role-rotator[data-tone="blue"]{--role-color:var(--series1)}.hero-role-rotator[data-tone="amber"]{--role-color:var(--series3)}.hero-role-rotator[data-tone="pink"]{--role-color:var(--series4)}.hero-role-rotator[data-tone="violet"]{--role-color:var(--series5)}
+.role-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:760px){.hero-role-rotator{font-size:clamp(27px,7vw,42px);gap:.16em}.hero-role-icon{border-radius:.24em}}
+@media(prefers-reduced-motion:reduce){.hero-role-rotator,.hero-role-title{transition:none!important}.hero-role-enterprise{animation:none!important}}
 </style>
 </head><body><a class="skip-link" href="#curriculum">Skip to curriculum</a><noscript><p>This interactive curriculum requires JavaScript to display its chapters and save progress.</p></noscript>
 <svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden"><defs>
@@ -149,7 +163,7 @@ main{min-width:0}.learning-rail{min-width:0;align-self:start}.learning-rail .sec
 <span class="cv-brand" title="Bank of America"><img src="assets/company-logos/bank-of-america.svg" alt="Bank of America" width="112" height="32"></span>
 <span class="cv-brand" title="MetLife"><img src="assets/company-logos/metlife.svg" alt="MetLife" width="92" height="30"></span>
 </div></div></header>
-<section class="hero" id="top"><div class="shell hero-inner hero-grid"><div class="hero-copy"><div class="eyebrow">THE COMPLETE LEARNING BLUEPRINT / 2027+ MASTER EDITION</div><h1>From Machine Learning to <em>AI Solution Architect.</em></h1><p class="lead">A complete learning path from Python and machine learning to <strong style="color:var(--text)">multi-agent systems, durable workflows and production AI.</strong> Build with open models, measure quality, enforce budgets, deploy securely, and defend every architectural decision.</p><div class="hero-acts"><a class="button primary" href="#curriculum">Explore 231 chapters →</a><a class="button" href="#roadmap">View learning path ↗</a><button class="button" onclick="window.print()">Print / Save as PDF</button></div><div class="metrics"><div class="metric"><strong>19</strong><small>Learning parts</small></div><div class="metric"><strong>60</strong><small>Core modules</small></div><div class="metric"><strong>231</strong><small>Detailed chapters</small></div><div class="metric"><strong>18</strong><small>Portfolio systems</small></div></div></div><aside class="hero-visual" aria-label="Animated machine learning concept preview">
+<section class="hero" id="top"><div class="shell hero-inner hero-grid"><div class="hero-copy"><div class="eyebrow">THE COMPLETE LEARNING BLUEPRINT / 2027+ MASTER EDITION</div><h1>From Machine Learning to <span class="hero-role-rotator" id="heroRoleRotator" data-tone="teal" aria-hidden="true"><span class="hero-role-icon"><svg class="icon"><use id="heroRoleIcon" href="#ico-code"/></svg></span><span class="hero-role-enterprise" id="heroEnterpriseWord"></span><span class="hero-role-title" id="heroRoleTitle">Software Engineer</span></span><span class="role-sr-only">AI Solution Architect.</span></h1><p class="lead">A complete learning path from Python and machine learning to <strong style="color:var(--text)">multi-agent systems, durable workflows and production AI.</strong> Build with open models, measure quality, enforce budgets, deploy securely, and defend every architectural decision.</p><div class="hero-acts"><a class="button primary" href="#curriculum">Explore 231 chapters →</a><a class="button" href="#roadmap">View learning path ↗</a><button class="button" onclick="window.print()">Print / Save as PDF</button></div><div class="metrics"><div class="metric"><strong>19</strong><small>Learning parts</small></div><div class="metric"><strong>60</strong><small>Core modules</small></div><div class="metric"><strong>231</strong><small>Detailed chapters</small></div><div class="metric"><strong>18</strong><small>Portfolio systems</small></div></div></div><aside class="hero-visual" aria-label="Animated machine learning concept preview">
 <div class="hero-visual-top"><span class="live-dot" aria-hidden="true"></span><span>THE LEARNING ENGINE</span><span id="heroSlideNumber">01 / 69</span></div>
 <div class="hero-visual-heading"><h2 id="heroSlideTitle">Linear Regression</h2><span class="pill">LIVE CONCEPT PREVIEW</span></div>
 <div class="hero-graph-viewport" role="region" aria-label="Animated graph; scroll horizontally on small screens" tabindex="0"><svg id="heroConceptGraph" viewBox="0 0 760 360" role="img" aria-labelledby="heroGraphTitle heroGraphDesc"><title id="heroGraphTitle">Linear Regression</title><desc id="heroGraphDesc">A line fits synthetic observations using gradient descent.</desc><g id="heroGraphMarks"></g></svg></div>
@@ -832,7 +846,24 @@ function filterRegistry(){const q=document.getElementById('registrySearch').valu
 function exportLearningProgress(){const data={version:2,topics:[...document.querySelectorAll('.topic-tick:checked')].map(t=>t.dataset.id),projects:[...document.querySelectorAll('.project-tick:checked')].map(t=>t.dataset.project)};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='ai-architect-2027-progress.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 async function importLearningProgress(file){try{if(!file.files[0])return;const data=JSON.parse(await file.files[0].text()),validTopics=new Set([...document.querySelectorAll('.topic-tick')].map(t=>t.dataset.id)),validProjects=new Set(ENTERPRISE.projects.map(p=>p.id));if(![1,2].includes(data.version)||!Array.isArray(data.topics)||!data.topics.every(x=>typeof x==='string'&&validTopics.has(x))||(data.version===2&&(!Array.isArray(data.projects)||!data.projects.every(x=>typeof x==='string'&&validProjects.has(x)))))throw Error('Invalid backup');if(!confirm('Replace topic and project progress with this backup? Older backups contain topic progress only.'))return;const topics=new Set(data.topics),projects=new Set(data.version===2?data.projects:[]);document.querySelectorAll('.topic-tick').forEach(t=>t.checked=topics.has(t.dataset.id));document.querySelectorAll('.project-tick').forEach(t=>t.checked=projects.has(t.dataset.project));writeStore('architect-projects-v1',JSON.stringify([...projects]));persistProgress();filterProjects();document.getElementById('storageNotice').textContent='Topic and project progress imported successfully.'}catch{document.getElementById('storageNotice').textContent='Could not import this file. Choose a valid curriculum progress backup.'}finally{file.value=''}}
 
+function initRoleRotator(){
+ const root=document.getElementById('heroRoleRotator'),title=document.getElementById('heroRoleTitle'),icon=document.getElementById('heroRoleIcon'),enterprise=document.getElementById('heroEnterpriseWord');
+ if(!root||!title||!icon||!enterprise)return;
+ const roles=[
+  ['Software Engineer','ico-code','teal'],['Software Developer','ico-code','blue'],['Technical Lead','ico-network','amber'],['Technical Manager','ico-workflow','pink'],['Architect','ico-compass','violet'],['Senior Software Engineer','ico-code','teal'],['Senior Technical Manager','ico-workflow','amber'],['Senior Architect','ico-compass','violet'],['Cloud Developer','ico-cloud','blue'],['Cloud Solution Architect','ico-cloud','violet'],['Data Engineer','ico-database','teal'],['Machine Learning Engineer','ico-chart','pink'],['Deep Learning Engineer','ico-layers','violet'],['AI Engineer','ico-spark','amber'],['Senior ML Engineer','ico-chart','blue'],['Data Scientist','ico-chart','teal'],['Senior Data Scientist','ico-chart','pink'],['AI Solution Architect','ico-spark','violet']
+ ];
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');let index=0,enterpriseStage=false,timer=0;
+ const show=(role,final=false)=>{root.classList.add('is-changing');window.setTimeout(()=>{title.textContent=role[0];icon.setAttribute('href','#'+role[1]);root.dataset.tone=role[2];root.classList.toggle('is-enterprise',final);enterprise.textContent=final?'Enterprise':'';requestAnimationFrame(()=>root.classList.remove('is-changing'))},180)};
+ if(reduce.matches){show(roles[roles.length-1],true);return}
+ show(roles[0]);
+ const advance=()=>{if(enterpriseStage){enterpriseStage=false;index=0;show(roles[index])}else if(index<roles.length-1){index++;show(roles[index])}else{enterpriseStage=true;show(roles[index],true)}timer=window.setTimeout(advance,enterpriseStage?3400:2200)};
+ timer=window.setTimeout(advance,2200);
+ reduce.addEventListener?.('change',event=>{if(event.matches){window.clearTimeout(timer);enterpriseStage=true;index=roles.length-1;show(roles[index],true)}});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)window.clearTimeout(timer);else if(!reduce.matches)timer=window.setTimeout(advance,1200)});
+}
+
 init();
+initRoleRotator();
 initEnhancements();
 initEnterprise();
 </script></body></html>
