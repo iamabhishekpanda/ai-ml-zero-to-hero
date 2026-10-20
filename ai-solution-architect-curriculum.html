@@ -88,6 +88,8 @@ main{min-width:0}.learning-rail{min-width:0;align-self:start}.learning-rail .sec
 .model-card[hidden]{display:none}.hf-mark{vertical-align:middle;flex:none}.model-card h4{font-size:12px;letter-spacing:0;margin:16px 0 4px}.model-card p{font-size:13px;margin:7px 0 12px}.model-card details{border-top:1px solid var(--line);padding:12px 0}.model-card summary,.coverage-map summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:13px}.coverage-map{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--panel);margin:25px 0}.coverage-map p{color:var(--muted);font-size:13px}.coverage-links{display:grid;gap:12px}.coverage-links>div{border-top:1px solid var(--line);padding-top:14px}.coverage-links a{display:inline-block;color:var(--accent);font-size:12px;margin:3px 12px 3px 0}
 @media print{.learning-rail{position:static;max-height:none;overflow:visible}.body-layout{display:block}.model-card details:not([open])>*:not(summary){display:block}.model-card{break-inside:avoid}}
 .side{overflow-x:hidden}.side a{overflow-wrap:anywhere}.side .progress-card{padding:14px 10px}.side .progress-head{flex-wrap:wrap}.learning-rail .recent-card{min-width:0}
+/* Topic-level study links */
+.chapter-study{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:7px 0 10px}.chapter-study a{color:var(--accent);font:700 11px 'IBM Plex Mono',monospace;text-underline-offset:3px}.chapter-study span{font:500 10px 'IBM Plex Mono',monospace;color:var(--muted)}.topic-list{list-style:none;margin:0;padding:0;display:grid;gap:5px}.topic-list li{min-width:0}.topic-list label{display:flex;gap:8px;align-items:flex-start}.topic-list label>span{min-width:0}.topic-resource{margin-left:auto;color:var(--accent);font:700 10px 'IBM Plex Mono',monospace;white-space:nowrap;padding:1px 4px;border:1px solid transparent;border-radius:5px}.topic-resource:hover{border-color:var(--accent);background:var(--chip)}@media(max-width:600px){.topic-resource{font-size:9px}.topic-list label{gap:6px}}
 </style>
 </head><body><a class="skip-link" href="#curriculum">Skip to curriculum</a><noscript><p>This interactive curriculum requires JavaScript to display its chapters and save progress.</p></noscript>
 <svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden"><defs>
@@ -192,6 +194,34 @@ const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const names = ['layers','message','spark','eye','blocks','network','spark'];
 function partIcon(p){return p.logo?`<img class="part-logo" src="${p.logo}" alt="">`:icon(p.icon)}
 function moduleSize(m){return m.chapters.length}
+const STUDY_RESOURCES=[
+ [/python|virtual environment|pathlib|dataclass|iterator|generator|type hint|pydantic|pytest|asynchronous/i,'Python documentation','https://docs.python.org/3/'],
+ [/numpy|array|broadcast|vectorization|scipy|sparse|numerical optimization/i,'NumPy learning','https://numpy.org/learn/'],
+ [/pandas|dataframe|polars|parquet|data validation/i,'pandas user guide','https://pandas.pydata.org/docs/user_guide/index.html'],
+ [/matplotlib|seaborn|plotly|scientific plot|color palette/i,'Matplotlib tutorials','https://matplotlib.org/stable/tutorials/index.html'],
+ [/linear algebra|vector|matrix|eigen|singular value|svd|projection|orthogon|rank/i,'3Blue1Brown linear algebra','https://www.3blue1brown.com/topics/linear-algebra'],
+ [/calculus|derivative|gradient|jacobian|hessian|chain rule|lagrange|convex/i,'Khan Academy calculus','https://www.khanacademy.org/math/calculus-1'],
+ [/probability|bayes|random variable|gaussian|binomial|poisson|likelihood|entropy|kl divergence|confidence interval|hypothesis|p-value|bootstrap/i,'MIT probability course','https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/'],
+ [/scikit|regression|classification|decision tree|random forest|xgboost|lightgbm|catboost|k-nearest|support vector|naive bayes|k-means|dbscan|gaussian mixture|isolation forest|pca|umap|tsne|anomaly/i,'scikit-learn user guide','https://scikit-learn.org/stable/user_guide.html'],
+ [/neural|backprop|relu|dropout|batch norm|cnn|convolution|lstm|rnn|optimizer|adam|pytorch/i,'PyTorch tutorials','https://docs.pytorch.org/tutorials/'],
+ [/token|transformer|attention|llm|language model|prompt|fine-tun|peft|lora|rag|embedding|retrieval/i,'Hugging Face LLM Course','https://huggingface.co/learn/llm-course/en/chapter1/1'],
+ [/image|vision|object detection|segmentation|opencv|video|diffusion|multimodal/i,'PyTorch Vision docs','https://docs.pytorch.org/vision/stable/index.html'],
+ [/langchain|langgraph|agent|tool calling|mcp|a2a/i,'LangChain documentation','https://docs.langchain.com/oss/python/langchain/overview'],
+ [/temporal|workflow|activity|durable|idempotent/i,'Temporal documentation','https://docs.temporal.io/'],
+ [/langsmith|observability|opentelemetry|trace|evaluation|token|budget|finops/i,'OpenTelemetry documentation','https://opentelemetry.io/docs/'],
+ [/vector database|pgvector|qdrant|pinecone|weaviate|milvus|faiss/i,'Qdrant documentation','https://qdrant.tech/documentation/'],
+ [/azure|microsoft foundry|azure ai/i,'Microsoft Foundry documentation','https://learn.microsoft.com/en-us/azure/foundry/'],
+ [/aws|bedrock|sagemaker/i,'AWS machine learning documentation','https://docs.aws.amazon.com/whitepapers/latest/aws-overview/machine-learning.html'],
+ [/gcp|google cloud|vertex|gemini enterprise/i,'Google Cloud AI documentation','https://cloud.google.com/products/ai'],
+ [/docker|kubernetes|terraform|ci\/cd|deployment|infrastructure/i,'Kubernetes documentation','https://kubernetes.io/docs/'],
+ [/security|privacy|fairness|governance|threat model|audit/i,'NIST AI Risk Management Framework','https://www.nist.gov/itl/ai-risk-management-framework']
+];
+function studyResource(topic,part,module,chapter){
+ const text=`${topic} ${chapter} ${module} ${part}`;const match=STUDY_RESOURCES.find(([pattern])=>pattern.test(text));
+ if(match)return {label:match[1],url:match[2]};
+ return {label:'Study guide search',url:'https://www.google.com/search?q='+encodeURIComponent(`${topic} ${chapter} tutorial`)};
+}
+function topicStudyLink(topic,part,module,chapter){const r=studyResource(topic,part,module,chapter);return `<a class="topic-resource" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer" aria-label="Study ${esc(topic)} with ${esc(r.label)}">Study ↗</a>`}
 function init(){
  const pref=readStore('architect-theme',null) || (window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.dataset.theme=pref;
  document.getElementById('theme').addEventListener('click',()=>{const n=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=n;writeStore('architect-theme',n)});
@@ -200,6 +230,19 @@ function init(){
  document.getElementById('partSections').innerHTML=DATA.parts.map((p,pi)=>{
  const modules=p.modules.map((m,mi)=>`<details class="module" open data-module="${p.id}-${mi}"><summary><span class="module-index">${p.order}.${mi+1}</span><span class="module-name">${esc(m.name)}</span><span class="module-count">${m.chapters.length} CHAPTERS</span><span class="module-progress"></span>${icon('down')}</summary><div class="chapter-table">${m.chapters.map((c,ci)=>{const chapterNumber=p.modules.slice(0,mi).reduce((sum,m)=>sum+m.chapters.length,0)+ci+1;const id=c.uid;return `<article class="chapter" id="chapter-${id}" data-search="${esc((p.title+' '+m.name+' '+c.title+' '+c.topics).toLowerCase())}"><div class="chapter-id">${String(chapterNumber).padStart(2,'0')}</div><div><h4>${esc(c.title)}</h4><div class="chapter-status">Not started</div><ul class="topic-list">${splitTopics(c.topics).map((topic,ti)=>`<li><label><input type="checkbox" class="topic-tick" data-id="${id}:t${ti}" aria-label="${esc(topic)}"><span>${esc(topic)}</span></label></li>`).join('')}</ul></div><input class="tick" type="checkbox" data-id="${id}" aria-label="Mark ${esc(c.title)} complete"></article>`}).join('')}</div></details>`).join('');
  return `<section class="section" id="part-${p.id}" data-part="${p.id}" style="--track:${p.color}"><div class="part-head"><div class="part-badge">${partIcon(p)}<span>${String(p.order).padStart(2,'0')}</span></div><div><div class="eyebrow">PART ${p.order} / ${esc(p.subtitle)}</div><h2>${esc(p.title)}</h2><p>${esc(p.goal)}</p><div class="part-meta"><span class="pill">${p.modules.length} MODULES</span><span class="pill">${p.modules.reduce((a,m)=>a+m.chapters.length,0)} CHAPTERS</span><span class="pill">${esc(p.priority.toUpperCase())}</span></div></div></div><div class="part-content">${modules}</div><div class="outcomes"><div class="outcome"><h3>Practical builds</h3><ul>${p.projects.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="outcome"><h3>Architecture competency</h3><p>${esc(p.architect)}</p></div></div></section>`}).join('');
+ document.querySelectorAll('.chapter').forEach(chapter=>{
+  const part=chapter.closest('.section').querySelector('.part-head h2').textContent;
+  const module=chapter.closest('.module').querySelector('.module-name').textContent;
+  const title=chapter.querySelector('h4').textContent;
+  const chapterResource=studyResource(title,part,module,title);
+  const study=document.createElement('div');study.className='chapter-study';
+  study.innerHTML=`<a href="${esc(chapterResource.url)}" target="_blank" rel="noopener noreferrer">Learn this chapter ↗</a><span>${esc(chapterResource.label)}</span>`;
+  chapter.querySelector('.chapter-status').before(study);
+  chapter.querySelectorAll('.topic-list label').forEach(label=>{
+   const topic=label.querySelector('span').textContent;
+   label.insertAdjacentHTML('beforeend',topicStudyLink(topic,part,module,title));
+  });
+ });
  document.getElementById('techRows').innerHTML=DATA.tech.map(r=>`<tr><td><strong>${esc(r[0])}</strong></td><td>${esc(r[1])}</td></tr>`).join('');
  document.getElementById('sourceGrid').innerHTML=DATA.resources.map(r=>`<a class="source" target="_blank" rel="noopener noreferrer" href="${esc(r[1])}">${esc(r[0])}<span>↗</span></a>`).join('');
  const questions=['How are corporate documents ingested, parsed, classified, chunked, embedded and indexed?','How are permissions enforced before information enters the model context?','When will hybrid retrieval and reranking improve relevance?','How do we contain prompt injection from retrieved documents?','How are groundedness, retrieval relevance and answer quality measured?','How do we handle timeouts, provider outages and dependency failures?','How does model usage, retrieval and infrastructure affect total cost?','How are data retention, audit logs, versioning and incidents handled?','When is a deterministic workflow safer than an autonomous agent?','How do we present the architecture and trade-offs to stakeholders?'];
