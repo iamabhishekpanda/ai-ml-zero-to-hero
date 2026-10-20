@@ -1,19 +1,20 @@
-# Company logo asset sources
+# Company logo assets
 
-These bundled logo files are used only for the organizations named in Abhishek Panda’s supplied CV. Company and client names remain visible beside each mark.
+The bundled marks below are copied from the experience section of [abhishekpanda.com](https://www.abhishekpanda.com/), as requested. They are served locally so the curriculum does not depend on the portfolio site at runtime.
 
-- Quality AI: official website asset — https://www.quality-ai.com/
-- Hiscox: https://en.wikipedia.org/wiki/File:Hiscox_(logo).svg
-- Solera: https://commons.wikimedia.org/wiki/File:Solera_Logo_CMYK-master.svg and https://www.solera.com/logo/
-- SmartDrive: official logo served by https://www.smartdrive.net/
-- Accion Labs: official media asset served by https://www.accionlabs.com/
-- KPMG: official logo asset served by https://kpmg.com/
-- Dell: https://commons.wikimedia.org/wiki/File:Dell_logo_2021.svg
-- Wells Fargo: official asset served by https://www.wellsfargo.com/
-- Virtusa: https://commons.wikimedia.org/wiki/File:Virtusa_Logo.svg
-- JD Sports & Fashion: official logo asset served by https://www.jdplc.com/
-- Conduent: https://commons.wikimedia.org/wiki/File:Conduent_logo.svg
-- Bank of America: https://commons.wikimedia.org/wiki/File:Bank_of_America_2018_logo.svg
-- MetLife: official asset served by https://www.metlife.com/
+| Organization | Local asset | Portfolio asset |
+|---|---|---|
+| Quality-AI | `quality-ai.png` | [quality.png](https://www.abhishekpanda.com/logos/quality.png) |
+| Hiscox | `hiscox.svg` | [hiscox.svg](https://www.abhishekpanda.com/logos/hiscox.svg) |
+| Solera / Smart Drive | `solera.svg` | [solera.svg](https://www.abhishekpanda.com/logos/solera.svg) |
+| Accion Labs | `accion-labs.svg` | [accion.svg](https://www.abhishekpanda.com/logos/accion.svg) |
+| Dell | `dell.svg` | [dell.svg](https://www.abhishekpanda.com/logos/dell.svg) |
+| KPMG | `kpmg.svg` | [kpmg.svg](https://www.abhishekpanda.com/logos/kpmg.svg) |
+| Wells Fargo | `wells-fargo.png` | [wells.png](https://www.abhishekpanda.com/logos/wells.png) |
+| Virtusa | `virtusa.svg` | [virtusa.svg](https://www.abhishekpanda.com/logos/virtusa.svg) |
+| JD Sports | `jd-sports.svg` | [jd.svg](https://www.abhishekpanda.com/logos/jd.svg) |
+| Conduent | `conduent.png` | [conduent.png](https://www.abhishekpanda.com/logos/conduent.png) |
+| MetLife | `metlife.svg` | [metlife.svg](https://www.abhishekpanda.com/logos/metlife.svg) |
+| Bank of America | `bank-of-america.svg` | [boa.svg](https://www.abhishekpanda.com/logos/boa.svg) |
 
-Names and marks are the property of their respective owners and are shown for personal career-history identification.
+Where a mark already contains the organization’s name, the strip displays only that mark. A short visible label is retained for icon-only marks, and the image alt text provides an accessible name. The original company marks remain their owners’ property.

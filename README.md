@@ -8,7 +8,7 @@ By Abhishek Panda — Enterprise AI Solution Architect.
 - `ai-solution-architect-curriculum.html`: authoritative curriculum source.
 - `abhishek-panda.jpg`: author portrait and favicon.
 - `assets/AbhishekPanda_CV.pdf`: downloadable CV linked from the header.
-- `assets/company-logos/`: local logo assets for every CV-listed employer and client, plus KPMG as the contract engagement; source links are recorded in `assets/company-logos/SOURCES.md`.
+- `assets/company-logos/`: local logo assets from Abhishek Panda’s portfolio; source links are recorded in `assets/company-logos/SOURCES.md`.
 - `handbook.html`: companion handbook with three existing chapter pages.
 - `CURRICULUM-PUBLISHING.md`: verification notes and publication limitations.
 
