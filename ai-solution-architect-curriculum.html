@@ -195,33 +195,46 @@ const names = ['layers','message','spark','eye','blocks','network','spark'];
 function partIcon(p){return p.logo?`<img class="part-logo" src="${p.logo}" alt="">`:icon(p.icon)}
 function moduleSize(m){return m.chapters.length}
 const STUDY_RESOURCES=[
- [/python|virtual environment|pathlib|dataclass|iterator|generator|type hint|pydantic|pytest|asynchronous/i,'Python documentation','https://docs.python.org/3/'],
- [/numpy|array|broadcast|vectorization|scipy|sparse|numerical optimization/i,'NumPy learning','https://numpy.org/learn/'],
- [/pandas|dataframe|polars|parquet|data validation/i,'pandas user guide','https://pandas.pydata.org/docs/user_guide/index.html'],
- [/matplotlib|seaborn|plotly|scientific plot|color palette/i,'Matplotlib tutorials','https://matplotlib.org/stable/tutorials/index.html'],
- [/linear algebra|vector|matrix|eigen|singular value|svd|projection|orthogon|rank/i,'3Blue1Brown linear algebra','https://www.3blue1brown.com/topics/linear-algebra'],
- [/calculus|derivative|gradient|jacobian|hessian|chain rule|lagrange|convex/i,'Khan Academy calculus','https://www.khanacademy.org/math/calculus-1'],
- [/probability|bayes|random variable|gaussian|binomial|poisson|likelihood|entropy|kl divergence|confidence interval|hypothesis|p-value|bootstrap/i,'MIT probability course','https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/'],
- [/scikit|regression|classification|decision tree|random forest|xgboost|lightgbm|catboost|k-nearest|support vector|naive bayes|k-means|dbscan|gaussian mixture|isolation forest|pca|umap|tsne|anomaly/i,'scikit-learn user guide','https://scikit-learn.org/stable/user_guide.html'],
- [/neural|backprop|relu|dropout|batch norm|cnn|convolution|lstm|rnn|optimizer|adam|pytorch/i,'PyTorch tutorials','https://docs.pytorch.org/tutorials/'],
- [/token|transformer|attention|llm|language model|prompt|fine-tun|peft|lora|rag|embedding|retrieval/i,'Hugging Face LLM Course','https://huggingface.co/learn/llm-course/en/chapter1/1'],
- [/image|vision|object detection|segmentation|opencv|video|diffusion|multimodal/i,'PyTorch Vision docs','https://docs.pytorch.org/vision/stable/index.html'],
- [/langchain|langgraph|agent|tool calling|mcp|a2a/i,'LangChain documentation','https://docs.langchain.com/oss/python/langchain/overview'],
- [/temporal|workflow|activity|durable|idempotent/i,'Temporal documentation','https://docs.temporal.io/'],
- [/langsmith|observability|opentelemetry|trace|evaluation|token|budget|finops/i,'OpenTelemetry documentation','https://opentelemetry.io/docs/'],
- [/vector database|pgvector|qdrant|pinecone|weaviate|milvus|faiss/i,'Qdrant documentation','https://qdrant.tech/documentation/'],
- [/azure|microsoft foundry|azure ai/i,'Microsoft Foundry documentation','https://learn.microsoft.com/en-us/azure/foundry/'],
- [/aws|bedrock|sagemaker/i,'AWS machine learning documentation','https://docs.aws.amazon.com/whitepapers/latest/aws-overview/machine-learning.html'],
- [/gcp|google cloud|vertex|gemini enterprise/i,'Google Cloud AI documentation','https://cloud.google.com/products/ai'],
- [/docker|kubernetes|terraform|ci\/cd|deployment|infrastructure/i,'Kubernetes documentation','https://kubernetes.io/docs/'],
- [/security|privacy|fairness|governance|threat model|audit/i,'NIST AI Risk Management Framework','https://www.nist.gov/itl/ai-risk-management-framework']
+ [/\bpydantic\b/i,'Pydantic documentation',q=>`https://docs.pydantic.dev/latest/search/?q=${q}`],
+ [/\bpytest\b/i,'pytest documentation',q=>`https://docs.pytest.org/en/stable/search.html?q=${q}`],
+ [/\b(numpy|array|broadcast|vectorization|scipy|sparse)\b/i,'NumPy / SciPy documentation',q=>`https://numpy.org/doc/stable/search.html?q=${q}`],
+ [/\b(pandas|dataframe|series|polars)\b/i,'pandas documentation',q=>`https://pandas.pydata.org/pandas-docs/stable/search.html?q=${q}`],
+ [/\b(matplotlib|seaborn|plotly)\b/i,'Matplotlib documentation',q=>`https://matplotlib.org/stable/search.html?q=${q}`],
+ [/\b(scikit-learn|sklearn|xgboost|lightgbm|catboost)\b/i,'scikit-learn documentation',q=>`https://scikit-learn.org/stable/search.html?q=${q}`],
+ [/\b(langchain|langgraph|langsmith)\b/i,'LangChain documentation',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:docs.langchain.com ${decodeURIComponent(q)}`)}`],
+ [/\b(temporal|workflow|activity|idempotent)\b/i,'Temporal documentation',q=>`https://docs.temporal.io/search?q=${q}`],
+ [/\b(qdrant|pgvector|pinecone|weaviate|milvus|faiss)\b/i,'vector database documentation',q=>`https://qdrant.tech/documentation/search/?q=${q}`],
+ [/\b(azure|microsoft foundry)\b/i,'Microsoft Learn',q=>`https://learn.microsoft.com/en-us/search/?terms=${q}`],
+ [/\b(aws|bedrock|sagemaker)\b/i,'AWS documentation',q=>`https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation-guide&searchQuery=${q}`],
+ [/\b(gcp|google cloud|vertex ai|gemini)\b/i,'Google Cloud documentation',q=>`https://cloud.google.com/s/results/?q=${q}`]
 ];
+const PART_STUDY_HUBS={
+ 8:['Python documentation',q=>`https://docs.python.org/3/search.html?q=${q}`],
+ 9:['Khan Academy mathematics',q=>`https://www.khanacademy.org/search?page_search_query=${q}`],
+ 10:['MIT OpenCourseWare probability',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:ocw.mit.edu ${decodeURIComponent(q)}`)}`],
+ 6:['scikit-learn learning guide',q=>`https://scikit-learn.org/stable/search.html?q=${q}`],
+ 1:['Dive into Deep Learning',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:d2l.ai ${decodeURIComponent(q)}`)}`],
+ 2:['Hugging Face NLP Course',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:huggingface.co/learn ${decodeURIComponent(q)}`)}`],
+ 4:['PyTorch Vision documentation',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:docs.pytorch.org/vision ${decodeURIComponent(q)}`)}`],
+ 3:['Hugging Face LLM Course',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:huggingface.co/learn/llm-course ${decodeURIComponent(q)}`)}`],
+ 7:['Hugging Face documentation',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:huggingface.co/docs ${decodeURIComponent(q)}`)}`],
+ 14:['Qdrant documentation',q=>`https://qdrant.tech/documentation/search/?q=${q}`],
+ 15:['LangChain documentation',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:docs.langchain.com ${decodeURIComponent(q)}`)}`],
+ 16:['LangGraph documentation',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:docs.langchain.com/oss/python/langgraph ${decodeURIComponent(q)}`)}`],
+ 17:['Temporal documentation',q=>`https://docs.temporal.io/search?q=${q}`],
+ 18:['LangSmith & OpenTelemetry documentation',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:docs.langchain.com/langsmith OR site:opentelemetry.io/docs ${decodeURIComponent(q)}`)}`],
+ 19:['Kubernetes documentation',q=>`https://kubernetes.io/docs/search/?q=${q}`],
+ 11:['Microsoft Learn',q=>`https://learn.microsoft.com/en-us/search/?terms=${q}`],
+ 12:['AWS documentation',q=>`https://docs.aws.amazon.com/search/doc-search.html?searchPath=documentation-guide&searchQuery=${q}`],
+ 13:['Google Cloud documentation',q=>`https://cloud.google.com/s/results/?q=${q}`],
+ 5:['NIST AI Risk Management Framework',q=>`https://www.google.com/search?q=${encodeURIComponent(`site:nist.gov ${decodeURIComponent(q)}`)}`]
+};
 function studyResource(topic,part,module,chapter){
- const text=`${topic} ${chapter} ${module} ${part}`;const match=STUDY_RESOURCES.find(([pattern])=>pattern.test(text));
- if(match)return {label:match[1],url:match[2]};
- return {label:'Study guide search',url:'https://www.google.com/search?q='+encodeURIComponent(`${topic} ${chapter} tutorial`)};
+ const partId=Number(part)||DATA.parts.find(p=>p.title===part)?.id;const query=encodeURIComponent(`${topic} ${chapter}`);
+ const exact=STUDY_RESOURCES.find(([pattern])=>pattern.test(topic));if(exact)return {label:exact[1],url:exact[2](query)};
+ const hub=PART_STUDY_HUBS[partId]||PART_STUDY_HUBS[8];return {label:`${hub[0]} · ${topic}`,url:hub[1](query)};
 }
-function topicStudyLink(topic,part,module,chapter){const r=studyResource(topic,part,module,chapter);return `<a class="topic-resource" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer" aria-label="Study ${esc(topic)} with ${esc(r.label)}">Study ↗</a>`}
+function topicStudyLink(topic,part,module,chapter){const r=studyResource(topic,part,module,chapter);return `<a class="topic-resource" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer" title="${esc(r.label)}" aria-label="Study ${esc(topic)} with ${esc(r.label)}">Study ↗</a>`}
 function init(){
  const pref=readStore('architect-theme',null) || (window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.dataset.theme=pref;
  document.getElementById('theme').addEventListener('click',()=>{const n=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=n;writeStore('architect-theme',n)});
@@ -231,7 +244,7 @@ function init(){
  const modules=p.modules.map((m,mi)=>`<details class="module" open data-module="${p.id}-${mi}"><summary><span class="module-index">${p.order}.${mi+1}</span><span class="module-name">${esc(m.name)}</span><span class="module-count">${m.chapters.length} CHAPTERS</span><span class="module-progress"></span>${icon('down')}</summary><div class="chapter-table">${m.chapters.map((c,ci)=>{const chapterNumber=p.modules.slice(0,mi).reduce((sum,m)=>sum+m.chapters.length,0)+ci+1;const id=c.uid;return `<article class="chapter" id="chapter-${id}" data-search="${esc((p.title+' '+m.name+' '+c.title+' '+c.topics).toLowerCase())}"><div class="chapter-id">${String(chapterNumber).padStart(2,'0')}</div><div><h4>${esc(c.title)}</h4><div class="chapter-status">Not started</div><ul class="topic-list">${splitTopics(c.topics).map((topic,ti)=>`<li><label><input type="checkbox" class="topic-tick" data-id="${id}:t${ti}" aria-label="${esc(topic)}"><span>${esc(topic)}</span></label></li>`).join('')}</ul></div><input class="tick" type="checkbox" data-id="${id}" aria-label="Mark ${esc(c.title)} complete"></article>`}).join('')}</div></details>`).join('');
  return `<section class="section" id="part-${p.id}" data-part="${p.id}" style="--track:${p.color}"><div class="part-head"><div class="part-badge">${partIcon(p)}<span>${String(p.order).padStart(2,'0')}</span></div><div><div class="eyebrow">PART ${p.order} / ${esc(p.subtitle)}</div><h2>${esc(p.title)}</h2><p>${esc(p.goal)}</p><div class="part-meta"><span class="pill">${p.modules.length} MODULES</span><span class="pill">${p.modules.reduce((a,m)=>a+m.chapters.length,0)} CHAPTERS</span><span class="pill">${esc(p.priority.toUpperCase())}</span></div></div></div><div class="part-content">${modules}</div><div class="outcomes"><div class="outcome"><h3>Practical builds</h3><ul>${p.projects.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="outcome"><h3>Architecture competency</h3><p>${esc(p.architect)}</p></div></div></section>`}).join('');
  document.querySelectorAll('.chapter').forEach(chapter=>{
-  const part=chapter.closest('.section').querySelector('.part-head h2').textContent;
+  const part=chapter.closest('.section').dataset.part;
   const module=chapter.closest('.module').querySelector('.module-name').textContent;
   const title=chapter.querySelector('h4').textContent;
   const chapterResource=studyResource(title,part,module,title);
