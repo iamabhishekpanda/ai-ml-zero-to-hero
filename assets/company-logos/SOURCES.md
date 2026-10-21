@@ -1,6 +1,6 @@
 # Company logo assets
 
-The bundled marks below are copied from the experience section of [abhishekpanda.com](https://www.abhishekpanda.com/), as requested. They are served locally so the curriculum does not depend on the portfolio site at runtime.
+The existing career marks are copied from the experience section of [abhishekpanda.com](https://www.abhishekpanda.com/). Qatar Airways and Citi marks were added from the linked Wikimedia Commons files. All assets are served locally so the pages do not depend on third-party image hosting at runtime.
 
 | Organization | Local asset | Portfolio asset |
 |---|---|---|
@@ -18,3 +18,6 @@ The bundled marks below are copied from the experience section of [abhishekpanda
 | Bank of America | `bank-of-america.svg` | [boa.svg](https://www.abhishekpanda.com/logos/boa.svg) |
 
 Where a mark already contains the organization’s name, the strip displays only that mark. A short visible label is retained for icon-only marks, and the image alt text provides an accessible name. The original company marks remain their owners’ property.
+
+| Qatar Airways | `qatar-airways.png` | [Wikimedia Commons file](https://commons.wikimedia.org/wiki/File:Qatar_Airways_Logo.png) (logo author listed as Qatar Airways) |
+| Citi Bank | `citi.svg` | [Wikimedia Commons file](https://commons.wikimedia.org/wiki/File:Citi_logo_March_2023.svg) |
